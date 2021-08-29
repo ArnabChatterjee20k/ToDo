@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+    Update
+{% endblock title %}
+
+{% block body %}
+    
+
+<section id="writer">
+    <div class="h-center">
+        <h2>Update Your todo</h2>
+    </div>
+    <div class="fillup">
+        <form action="/update/{{todo.sno}}" method="POST" name="myform"><!-- "/"means page will get reloaded -->
+            <div class="subject">
+                <label for="sub">Title</label>
+                <input type="text" id="sub" name="title" value="{{todo.title}}"> 
+            </div>
+            <div class="message-fill">
+                <label for="message">Content</label>
+                <textarea name="content" id="message" cols="1000" rows="10" minlength="0" maxlength="20"
+                >{{todo.desc}}</textarea>
+            </div>
+            <div>
+                <input type="submit" value="Update" class="btn">
+            </div>
+        </form>
+    </div>
+
+    </section>
+    
+{% endblock body %}

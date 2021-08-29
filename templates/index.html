@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+    
+<!-- Form to write todo -->
+
+    <section id="writer">
+        <div class="h-center">
+            <h2>Write your ToDo</h2>
+        </div>
+        <div class="fillup">
+            <form action="/" method="POST" name="myform"><!-- "/"means page will get reloaded -->
+                <div class="subject">
+                    <label for="sub">Title</label>
+                    <input type="text" id="sub" name="title">
+                </div>
+                <div class="message-fill">
+                    <label for="message">Content</label>
+                    <textarea name="content" id="message" cols="1000" rows="10" minlength="0" maxlength="20"></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="Add" class="btn" onclick="see()">
+                </div>
+            </form>
+        </div>
+        <div class="h-center">
+            <h2>Your ToDo's</h2>
+        </div>
+        
+                <!-- {% for i in "Arnab" %}
+                <tr>
+                    <td>i</td>
+                </tr>
+                {% endfor %} -->
+                    {% if alltodo|length==0 %}
+                        <h3 class="h-center">No records</h3>
+                        
+                    {% else %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SlNo</th>
+                                <th>Title</th>
+                                <th>Content</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+            
+                            </tr>
+                        </thead>
+                        {% for todo in alltodo %}
+                    <tbody>
+                    <tr>
+                        <td data-label="SlNo">
+                            {{loop.index}}
+                        </td>
+                        <td data-label="Title">
+                            {{todo.title}}
+                        </td>
+                        <td data-label="Content">
+                            {{todo.desc}}
+                        </td>
+                        <td data-label="Date">
+                            {{todo.date}}
+                        </td>
+                        <td>
+                            <a href="/update/{{todo.sno}}"><button class="btn-td" data-label="Actions">Update</button></a>
+                            <a href="/delete/{{todo.sno}}"><button class="btn-td" data-label="Actions">Delete</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+            </tbody>
+        </table>
+    </section>    
+    
+    {% endblock body %}    
